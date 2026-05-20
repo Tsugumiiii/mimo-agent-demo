@@ -1,0 +1,504 @@
+{
+  "scan": {
+    "agent": "ScannerAgent",
+    "summary": {
+      "total_files_scanned": 5,
+      "total_issues": 15,
+      "by_severity": {
+        "critical": 3,
+        "high": 4,
+        "medium": 3,
+        "low": 5
+      }
+    },
+    "issues": [
+      {
+        "file_path": "src/auth/login.py",
+        "line_number": 4,
+        "rule_id": "unused-import",
+        "severity": "low",
+        "message": "可能存在未使用的导入，建议清理",
+        "code_snippet": "import { unused_thing }",
+        "fix_suggestion": "移除未使用的导入项"
+      },
+      {
+        "file_path": "src/auth/login.py",
+        "line_number": 6,
+        "rule_id": "hardcoded-secret",
+        "severity": "critical",
+        "message": "代码中存在硬编码的敏感信息",
+        "code_snippet": "api_key = \"sk-1234567890abcdef1234567890abcdef\"",
+        "fix_suggestion": "改用环境变量或密钥管理服务"
+      },
+      {
+        "file_path": "src/auth/login.py",
+        "line_number": 10,
+        "rule_id": "deprecated-api",
+        "severity": "high",
+        "message": "使用了已废弃的 API，请迁移到最新写法",
+        "code_snippet": "result = self._validate(username, password).subscribe()",
+        "fix_suggestion": "替换为最新 API 调用方式"
+      },
+      {
+        "file_path": "src/auth/login.py",
+        "line_number": 13,
+        "rule_id": "missing-error-handling",
+        "severity": "medium",
+        "message": "异步调用缺少 try-catch 错误处理",
+        "code_snippet": "token = await self._fetch_new_token()",
+        "fix_suggestion": "使用 try-catch 包裹异步调用"
+      },
+      {
+        "file_path": "src/auth/login.py",
+        "line_number": 17,
+        "rule_id": "hardcoded-secret",
+        "severity": "critical",
+        "message": "代码中存在硬编码的敏感信息",
+        "code_snippet": "secret = \"my-secret-key-12345\"",
+        "fix_suggestion": "改用环境变量或密钥管理服务"
+      },
+      {
+        "file_path": "src/services/payment.py",
+        "line_number": 1,
+        "rule_id": "circular-dependency",
+        "severity": "high",
+        "message": "存在潜在的循环依赖，建议重构导入路径",
+        "code_snippet": "from ..auth.login import UserAuth",
+        "fix_suggestion": "提取公共依赖到独立模块"
+      },
+      {
+        "file_path": "src/services/payment.py",
+        "line_number": 6,
+        "rule_id": "deprecated-api",
+        "severity": "high",
+        "message": "使用了已废弃的 API，请迁移到最新写法",
+        "code_snippet": "order = Order.find(order_id).toPromise()",
+        "fix_suggestion": "替换为最新 API 调用方式"
+      },
+      {
+        "file_path": "src/services/payment.py",
+        "line_number": 8,
+        "rule_id": "missing-error-handling",
+        "severity": "medium",
+        "message": "异步调用缺少 try-catch 错误处理",
+        "code_snippet": "result = self._charge(order)",
+        "fix_suggestion": "使用 try-catch 包裹异步调用"
+      },
+      {
+        "file_path": "src/services/payment.py",
+        "line_number": 11,
+        "rule_id": "hardcoded-secret",
+        "severity": "critical",
+        "message": "代码中存在硬编码的敏感信息",
+        "code_snippet": "password = \"payment-gateway-secret-98765\"",
+        "fix_suggestion": "改用环境变量或密钥管理服务"
+      },
+      {
+        "file_path": "src/utils/helpers.py",
+        "line_number": 6,
+        "rule_id": "missing-error-handling",
+        "severity": "medium",
+        "message": "异步调用缺少 try-catch 错误处理",
+        "code_snippet": "result = json.dumps(data)",
+        "fix_suggestion": "使用 try-catch 包裹异步调用"
+      },
+      {
+        "file_path": "src/utils/helpers.py",
+        "line_number": 11,
+        "rule_id": "unused-import",
+        "severity": "low",
+        "message": "可能存在未使用的导入，建议清理",
+        "code_snippet": "import { heavy_lib }",
+        "fix_suggestion": "移除未使用的导入项"
+      },
+      {
+        "file_path": "src/utils/helpers.py",
+        "line_number": 14,
+        "rule_id": "naming-convention",
+        "severity": "low",
+        "message": "变量命名不符合 camelCase 规范",
+        "code_snippet": "class data_processor:",
+        "fix_suggestion": "重命名为小驼峰风格，如 camelCase"
+      },
+      {
+        "file_path": "src/models/order.py",
+        "line_number": 1,
+        "rule_id": "circular-dependency",
+        "severity": "high",
+        "message": "存在潜在的循环依赖，建议重构导入路径",
+        "code_snippet": "from ..services.payment import PaymentService",
+        "fix_suggestion": "提取公共依赖到独立模块"
+      },
+      {
+        "file_path": "src/models/order.py",
+        "line_number": 12,
+        "rule_id": "deprecated-api",
+        "severity": "high",
+        "message": "使用了已废弃的 API，请迁移到最新写法",
+        "code_snippet": "result = service.process(self.id).subscribe()",
+        "fix_suggestion": "替换为最新 API 调用方式"
+      },
+      {
+        "file_path": "src/models/order.py",
+        "line_number": 13,
+        "rule_id": "missing-error-handling",
+        "severity": "medium",
+        "message": "异步调用缺少 try-catch 错误处理",
+        "code_snippet": "return result",
+        "fix_suggestion": "使用 try-catch 包裹异步调用"
+      }
+    ]
+  },
+  "reasoner": {
+    "agent": "ReasonerAgent",
+    "reasoning_chain": "Scanner输出 → 根因诊断 → 影响面评估 → 风险评级 → 优先级排序",
+    "summary": {
+      "total_issues": 15,
+      "auto_fixable": 5,
+      "needs_review": 10
+    },
+    "fix_plan": [
+      {
+        "issue_id": 2,
+        "file_path": "src/auth/login.py",
+        "severity": "critical",
+        "root_cause": "安全意识薄弱 —— 开发阶段临时写入后未移除",
+        "impact_scope": "影响安全性和系统稳定性，需立即处理",
+        "risk_level": "high",
+        "priority": 13,
+        "suggested_action": "迁移到环境变量 / Vault，清理 Git 历史",
+        "estimated_effort": "2-4h"
+      },
+      {
+        "issue_id": 5,
+        "file_path": "src/auth/login.py",
+        "severity": "critical",
+        "root_cause": "安全意识薄弱 —— 开发阶段临时写入后未移除",
+        "impact_scope": "影响安全性和系统稳定性，需立即处理",
+        "risk_level": "high",
+        "priority": 13,
+        "suggested_action": "迁移到环境变量 / Vault，清理 Git 历史",
+        "estimated_effort": "2-4h"
+      },
+      {
+        "issue_id": 9,
+        "file_path": "src/services/payment.py",
+        "severity": "critical",
+        "root_cause": "安全意识薄弱 —— 开发阶段临时写入后未移除",
+        "impact_scope": "影响安全性和系统稳定性，需立即处理",
+        "risk_level": "high",
+        "priority": 13,
+        "suggested_action": "迁移到环境变量 / Vault，清理 Git 历史",
+        "estimated_effort": "2-4h"
+      },
+      {
+        "issue_id": 3,
+        "file_path": "src/auth/login.py",
+        "severity": "high",
+        "root_cause": "历史遗留 —— 框架升级后未同步迁移旧 API 调用",
+        "impact_scope": "影响代码可维护性，可能引发运行时错误",
+        "risk_level": "medium",
+        "priority": 8,
+        "suggested_action": "查阅最新 API 文档，替换为推荐写法，补充单元测试",
+        "estimated_effort": "1-2h"
+      },
+      {
+        "issue_id": 7,
+        "file_path": "src/services/payment.py",
+        "severity": "high",
+        "root_cause": "历史遗留 —— 框架升级后未同步迁移旧 API 调用",
+        "impact_scope": "影响代码可维护性，可能引发运行时错误",
+        "risk_level": "medium",
+        "priority": 8,
+        "suggested_action": "查阅最新 API 文档，替换为推荐写法，补充单元测试",
+        "estimated_effort": "1-2h"
+      },
+      {
+        "issue_id": 6,
+        "file_path": "src/services/payment.py",
+        "severity": "high",
+        "root_cause": "架构退化 —— 模块边界模糊，职责未分离",
+        "impact_scope": "影响代码可维护性，可能引发运行时错误",
+        "risk_level": "medium",
+        "priority": 8,
+        "suggested_action": "提取共享接口到独立模块，解除双向引用",
+        "estimated_effort": "1-2h"
+      },
+      {
+        "issue_id": 13,
+        "file_path": "src/models/order.py",
+        "severity": "high",
+        "root_cause": "架构退化 —— 模块边界模糊，职责未分离",
+        "impact_scope": "影响代码可维护性，可能引发运行时错误",
+        "risk_level": "medium",
+        "priority": 8,
+        "suggested_action": "提取共享接口到独立模块，解除双向引用",
+        "estimated_effort": "1-2h"
+      },
+      {
+        "issue_id": 14,
+        "file_path": "src/models/order.py",
+        "severity": "high",
+        "root_cause": "历史遗留 —— 框架升级后未同步迁移旧 API 调用",
+        "impact_scope": "影响代码可维护性，可能引发运行时错误",
+        "risk_level": "medium",
+        "priority": 8,
+        "suggested_action": "查阅最新 API 文档，替换为推荐写法，补充单元测试",
+        "estimated_effort": "1-2h"
+      },
+      {
+        "issue_id": 4,
+        "file_path": "src/auth/login.py",
+        "severity": "medium",
+        "root_cause": "历史累积 —— 快速迭代中忽略了错误处理",
+        "impact_scope": "影响代码质量，降低可读性和健壮性",
+        "risk_level": "low",
+        "priority": 4,
+        "suggested_action": "添加 try-catch 块，统一错误日志格式",
+        "estimated_effort": "30min-1h"
+      },
+      {
+        "issue_id": 8,
+        "file_path": "src/services/payment.py",
+        "severity": "medium",
+        "root_cause": "历史累积 —— 快速迭代中忽略了错误处理",
+        "impact_scope": "影响代码质量，降低可读性和健壮性",
+        "risk_level": "low",
+        "priority": 4,
+        "suggested_action": "添加 try-catch 块，统一错误日志格式",
+        "estimated_effort": "30min-1h"
+      },
+      {
+        "issue_id": 10,
+        "file_path": "src/utils/helpers.py",
+        "severity": "medium",
+        "root_cause": "历史累积 —— 快速迭代中忽略了错误处理",
+        "impact_scope": "影响代码质量，降低可读性和健壮性",
+        "risk_level": "low",
+        "priority": 4,
+        "suggested_action": "添加 try-catch 块，统一错误日志格式",
+        "estimated_effort": "30min-1h"
+      },
+      {
+        "issue_id": 15,
+        "file_path": "src/models/order.py",
+        "severity": "medium",
+        "root_cause": "历史累积 —— 快速迭代中忽略了错误处理",
+        "impact_scope": "影响代码质量，降低可读性和健壮性",
+        "risk_level": "low",
+        "priority": 4,
+        "suggested_action": "添加 try-catch 块，统一错误日志格式",
+        "estimated_effort": "30min-1h"
+      },
+      {
+        "issue_id": 1,
+        "file_path": "src/auth/login.py",
+        "severity": "low",
+        "root_cause": "重构遗漏 —— 删除功能时未同步清理导入",
+        "impact_scope": "影响代码风格一致性，无运行时影响",
+        "risk_level": "low",
+        "priority": 1,
+        "suggested_action": "运行 auto-import 清理工具，删除未使用导入",
+        "estimated_effort": "5-15min"
+      },
+      {
+        "issue_id": 11,
+        "file_path": "src/utils/helpers.py",
+        "severity": "low",
+        "root_cause": "重构遗漏 —— 删除功能时未同步清理导入",
+        "impact_scope": "影响代码风格一致性，无运行时影响",
+        "risk_level": "low",
+        "priority": 1,
+        "suggested_action": "运行 auto-import 清理工具，删除未使用导入",
+        "estimated_effort": "5-15min"
+      },
+      {
+        "issue_id": 12,
+        "file_path": "src/utils/helpers.py",
+        "severity": "low",
+        "root_cause": "规范意识不足 —— 开发者未遵循团队编码规范",
+        "impact_scope": "影响代码风格一致性，无运行时影响",
+        "risk_level": "low",
+        "priority": 1,
+        "suggested_action": "使用 IDE 重命名功能批量修正，确保引用同步更新",
+        "estimated_effort": "5-15min"
+      }
+    ]
+  },
+  "arbiter": {
+    "agent": "ArbiterAgent",
+    "status": "已解决",
+    "message": "检测到 2 个冲突，已全部仲裁完毕",
+    "conflicts_resolved": 2,
+    "resolutions": [
+      {
+        "conflict_id": 1,
+        "file_path": "src/auth/login.py",
+        "conflicting_issues": [2, 3, 4, 1, 5],
+        "resolution": "优先执行高风险修复 #2 (硬编码密钥)，低风险项推迟至下一轮迭代",
+        "reasoning": "高风险项涉及安全性和系统稳定性，不能延迟；低风险项为风格问题，可在下一轮单独处理",
+        "winner_issue_id": 2
+      },
+      {
+        "conflict_id": 2,
+        "file_path": "src/services/payment.py",
+        "conflicting_issues": [6, 7, 8, 9],
+        "resolution": "优先执行高风险修复 #9 (硬编码密钥)，低风险项推迟至下一轮迭代",
+        "reasoning": "高风险项涉及安全性和系统稳定性，不能延迟",
+        "winner_issue_id": 9
+      }
+    ]
+  },
+  "executor": {
+    "agent": "ExecutorAgent",
+    "summary": {
+      "total": 15,
+      "success": 6,
+      "failed": 1,
+      "skipped": 8,
+      "auto_fix_rate": "40.0%"
+    },
+    "results": [
+      {
+        "issue_id": 2,
+        "file_path": "src/auth/login.py",
+        "status": "skipped",
+        "action_taken": "高风险项暂停自动处理，已生成 PR 等待人工 Review",
+        "pr_branch": "fix/high-risk-002",
+        "test_result": "N/A",
+        "rollback_reason": "需人工确认修复方案"
+      },
+      {
+        "issue_id": 5,
+        "file_path": "src/auth/login.py",
+        "status": "skipped",
+        "action_taken": "高风险项暂停自动处理，已生成 PR 等待人工 Review",
+        "pr_branch": "fix/high-risk-005",
+        "test_result": "N/A",
+        "rollback_reason": "需人工确认修复方案"
+      },
+      {
+        "issue_id": 9,
+        "file_path": "src/services/payment.py",
+        "status": "skipped",
+        "action_taken": "高风险项暂停自动处理，已生成 PR 等待人工 Review",
+        "pr_branch": "fix/high-risk-009",
+        "test_result": "N/A",
+        "rollback_reason": "需人工确认修复方案"
+      },
+      {
+        "issue_id": 3,
+        "file_path": "src/auth/login.py",
+        "status": "success",
+        "action_taken": "查阅最新 API 文档，替换为推荐写法，补充单元测试",
+        "pr_branch": "fix/auto-003-src-auth-login",
+        "test_result": "ESLint ✅ | Unit Tests ✅ | Coverage 不变",
+        "rollback_reason": ""
+      },
+      {
+        "issue_id": 7,
+        "file_path": "src/services/payment.py",
+        "status": "success",
+        "action_taken": "查阅最新 API 文档，替换为推荐写法，补充单元测试",
+        "pr_branch": "fix/auto-007-src-services-payment",
+        "test_result": "ESLint ✅ | Unit Tests ✅ | Coverage 不变",
+        "rollback_reason": ""
+      },
+      {
+        "issue_id": 6,
+        "file_path": "src/services/payment.py",
+        "status": "skipped",
+        "action_taken": "高风险项暂停自动处理，已生成 PR 等待人工 Review",
+        "pr_branch": "fix/high-risk-006",
+        "test_result": "N/A",
+        "rollback_reason": "需人工确认修复方案"
+      },
+      {
+        "issue_id": 13,
+        "file_path": "src/models/order.py",
+        "status": "skipped",
+        "action_taken": "高风险项暂停自动处理，已生成 PR 等待人工 Review",
+        "pr_branch": "fix/high-risk-013",
+        "test_result": "N/A",
+        "rollback_reason": "需人工确认修复方案"
+      },
+      {
+        "issue_id": 14,
+        "file_path": "src/models/order.py",
+        "status": "success",
+        "action_taken": "查阅最新 API 文档，替换为推荐写法，补充单元测试",
+        "pr_branch": "fix/auto-014-src-models-order",
+        "test_result": "ESLint ✅ | Unit Tests ✅ | Coverage 不变",
+        "rollback_reason": ""
+      },
+      {
+        "issue_id": 4,
+        "file_path": "src/auth/login.py",
+        "status": "success",
+        "action_taken": "添加 try-catch 块，统一错误日志格式",
+        "pr_branch": "fix/auto-004-src-auth-login",
+        "test_result": "ESLint ✅ | Unit Tests ✅ | Coverage 不变",
+        "rollback_reason": ""
+      },
+      {
+        "issue_id": 8,
+        "file_path": "src/services/payment.py",
+        "status": "skipped",
+        "action_taken": "高风险项暂停自动处理，已生成 PR 等待人工 Review",
+        "pr_branch": "fix/high-risk-008",
+        "test_result": "N/A",
+        "rollback_reason": "需人工确认修复方案"
+      },
+      {
+        "issue_id": 10,
+        "file_path": "src/utils/helpers.py",
+        "status": "skipped",
+        "action_taken": "高风险项暂停自动处理，已生成 PR 等待人工 Review",
+        "pr_branch": "fix/high-risk-010",
+        "test_result": "N/A",
+        "rollback_reason": "需人工确认修复方案"
+      },
+      {
+        "issue_id": 15,
+        "file_path": "src/models/order.py",
+        "status": "skipped",
+        "action_taken": "高风险项暂停自动处理，已生成 PR 等待人工 Review",
+        "pr_branch": "fix/high-risk-015",
+        "test_result": "N/A",
+        "rollback_reason": "需人工确认修复方案"
+      },
+      {
+        "issue_id": 1,
+        "file_path": "src/auth/login.py",
+        "status": "success",
+        "action_taken": "运行 auto-import 清理工具，删除未使用导入",
+        "pr_branch": "fix/auto-001-src-auth-login",
+        "test_result": "ESLint ✅ | Unit Tests ✅ | Coverage 不变",
+        "rollback_reason": ""
+      },
+      {
+        "issue_id": 11,
+        "file_path": "src/utils/helpers.py",
+        "status": "success",
+        "action_taken": "运行 auto-import 清理工具，删除未使用导入",
+        "pr_branch": "fix/auto-011-src-utils-helpers",
+        "test_result": "ESLint ✅ | Unit Tests ✅ | Coverage 不变",
+        "rollback_reason": ""
+      },
+      {
+        "issue_id": 12,
+        "file_path": "src/utils/helpers.py",
+        "status": "failed",
+        "action_taken": "使用 IDE 重命名功能批量修正，确保引用同步更新",
+        "pr_branch": "fix/auto-012-src-utils-helpers",
+        "test_result": "ESLint ✅ | Unit Tests ❌ (2/15 failed)",
+        "rollback_reason": "修复导致回归测试失败，已自动回退并重新推理"
+      }
+    ]
+  },
+  "meta": {
+    "total_time_s": 0.06,
+    "estimated_tokens": 275000,
+    "timestamp": "2026-05-20T23:55:00.123456"
+  }
+}
