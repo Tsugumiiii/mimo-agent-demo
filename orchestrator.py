@@ -3,8 +3,16 @@
 完整工作流，实现代码质量自动化治理。
 """
 import json
+import sys
 import time
 from datetime import datetime
+
+# 强制 UTF-8，解决 Windows Code Runner 中文乱码
+if hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 
 from agents.scanner import ScannerAgent
 from agents.reasoner import ReasonerAgent

@@ -7,6 +7,13 @@ import sys
 import tempfile
 from pathlib import Path
 
+# 强制 UTF-8，解决 Windows Code Runner 中文乱码
+if hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 
 def create_demo_codebase(base_dir: str):
     """创建一个包含典型代码问题的模拟代码库"""
