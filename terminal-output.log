@@ -3,7 +3,7 @@
   多 Agent 代码质量自动化治理系统
 ====================================================================
 
-[1] 创建模拟代码库: /tmp/mimo-demo-abc123
+[1] 创建模拟代码库: C:\Users\14934\AppData\Local\Temp\mimo-demo-y1p7mypm
   创建: src/auth/login.py
   创建: src/services/payment.py
   创建: src/utils/helpers.py
@@ -18,114 +18,42 @@
   Multi-Agent Code Governance System v1.0
 ====================================================================
   Phase 1/4: Scanner Agent 启动 — 扫描代码仓库
-    扫描完成 (0.03s): 遍历 5 个文件, 发现 15 个问题
-    严重性分布: {"critical": 3, "high": 4, "medium": 3, "low": 5}
-
-  Phase 2/4: Reasoner Agent 启动 — 长链推理分析
-    推理完成 (0.01s): 推理链路: Scanner输出 → 根因诊断 → 影响面评估 → 风险评级 → 优先级排序
-    可自动修复: 5, 需人工审查: 10
-
-  Phase 3/4: Arbiter Agent 启动 — 冲突检测与仲裁
-    仲裁完成 (0.00s): 检测到 2 个冲突，已全部仲裁完毕
-
-  Phase 4/4: Executor Agent 启动 — 执行修复与验证
-    执行完成 (0.01s): 成功 6, 失败 1, 跳过 8
-    自动修复率: 40.0%
-
+    扫描完成 (0.01s): 遍历 5 个文件, 发现 24 个问题
+    严重性分布: {"critical": 4, "high": 7, "medium": 2, "low": 11}
+  
+Phase 2/4: Reasoner Agent 启动 — 长链推理分析
+    推理完成 (0.00s): 推理链路: Scanner输出 → 根因诊断 → 影响面评估 → 风险评级 → 优先级排序
+    可自动修复: 13, 需人工审查: 11
+  
+Phase 3/4: Arbiter Agent 启动 — 冲突检测与仲裁
+    仲裁完成 (0.00s): 检测到 4 个冲突，已全部仲裁完毕
+  
+Phase 4/4: Executor Agent 启动 — 执行修复与验证
+    执行完成 (0.00s): 成功 9, 失败 4, 跳过 11
+    自动修复率: 37.5%
+  
 ====================================================================
-  全流程完成，总耗时: 0.06s
-  预估 Token 消耗: ~275,000
-  完成时间: 2026-05-20T23:55:00.123456
-====================================================================
+    全流程完成，总耗时: 0.01s
+    预估 Token 消耗: ~410,000
+    完成时间: 2026-05-21T00:22:33.133615
+  ====================================================================
+
 
 ********************************************************************
   成果总结
 ********************************************************************
   扫描文件数:    5
-  发现问题数:    15
-  自动修复成功:  6
-  自动修复失败:  1
-  跳过(需人工):  8
-  自动修复率:    40.0%
-  预估 Token 消耗: ~275,000
-  总耗时:        0.06s
+  发现问题数:    24
+  自动修复成功:  9
+  自动修复失败:  4
+  跳过(需人工):  11
+  自动修复率:    37.5%
+  预估 Token 消耗: ~410,000
+  总耗时:        0.01s
 ********************************************************************
 
   可用证据材料:
-    1. 终端运行日志（上方输出）✅
+    1. 终端运行日志（上方输出）
     2. 完整治理报告: governance-report.json
-    3. 项目源码: C:\Users\14934\Desktop\claude\mimo-agent-demo\
+    3. 项目源码: C:\Users\14934\Desktop\claude\mimo-agent-demo
 
-====================================================================
-  多 Agent 协作消息流（调试模式）
-====================================================================
-
-[MSG] ScannerAgent → MessageQueue:
-  {"agent": "ScannerAgent", "summary": {"total_files_scanned": 5,
-   "total_issues": 15, "by_severity": {"critical": 3, "high": 4,
-   "medium": 3, "low": 5}}, "issues": [...]}
-
-[MSG] MessageQueue → ReasonerAgent:
-  转发 Scanner 输出，触发长链推理
-
-[REASONING CHAIN]
-  Step 1: 解析问题清单，识别 15 个问题
-  Step 2: 逐问题诊断根因
-    - hardcoded-secret → 安全意识薄弱，开发阶段临时写入
-    - deprecated-api → 历史遗留，框架升级后未迁移
-    - circular-dependency → 架构退化，模块边界模糊
-    - missing-error-handling → 快速迭代忽略错误处理
-    - naming-convention → 规范意识不足
-    - unused-import → 重构遗漏，未同步清理
-  Step 3: 评估每个问题的影响范围
-  Step 4: 按严重性+风险计算优先级 (1-13 分)
-  Step 5: 生成结构化修复计划，按优先级降序排列
-
-[MSG] ReasonerAgent → ArbiterAgent:
-  转发修复计划，检测冲突
-
-[ARBITRATION]
-  Conflict #1: src/auth/login.py
-    - Issue #2 (hardcoded-secret, high) vs Issue #10 (naming-convention, low)
-    → 决策: 优先执行 #2 安全修复，#10 推迟至下一轮
-    → 理由: 硬编码密钥涉及系统安全性，不可延迟处理
-
-  Conflict #2: src/services/payment.py
-    - Issue #4 (hardcoded-secret, critical) vs Issue #12 (deprecated-api, high)
-    → 决策: 优先执行 #4 密钥修复，#12 API 迁移并行执行
-    → 理由: 两修复作用行不同，无冲突风险，可并行
-
-[MSG] ArbiterAgent → ExecutorAgent:
-  转发无冲突的修复方案列表
-
-[EXECUTION LOG]
-  ✅ Issue #4  | payment.py  | hardcoded-secret    | PR fix/auto-004 | Tests ✅
-  ✅ Issue #2  | login.py    | hardcoded-secret    | PR fix/auto-002 | Tests ✅
-  ✅ Issue #8  | helpers.py  | unused-import       | PR fix/auto-008 | Tests ✅
-  ✅ Issue #10 | login.py    | naming-convention   | PR fix/auto-010 | Tests ✅
-  ✅ Issue #12 | payment.py  | deprecated-api      | PR fix/auto-012 | Tests ✅
-  ✅ Issue #14 | order.py    | deprecated-api      | PR fix/auto-014 | Tests ✅
-  ❌ Issue #7  | helpers.py  | naming-convention   | PR fix/auto-007 | Tests ❌
-        → 自动回退，原因: 修复导致 2/15 单元测试失败
-        → 已重新加入推理队列，等待下一轮分析
-  ⏭️ Issue #1  | login.py    | circular-dependency | 高风险，等待人工 Review
-  ⏭️ Issue #3  | payment.py  | circular-dependency | 高风险，等待人工 Review
-  ⏭️ Issue #5  | helpers.py  | missing-error-handling | 中风险，等待人工确认
-  ⏭️ Issue #6  | login.py    | missing-error-handling | 中风险，等待人工确认
-  ⏭️ Issue #9  | order.py    | missing-error-handling | 中风险，等待人工确认
-  ⏭️ ... (+3 more skipped)
-
-====================================================================
-  人机协同检查点报告
-====================================================================
-  高风险项 (需人工 Review): 7 项
-  已自动修复 (低风险):     6 项
-  自动修复失败 (已回退):   1 项
-  建议: 优先审查 auth/login.py 和 services/payment.py 的安全问题
-
-====================================================================
-  ✅ 多 Agent 协作工作流执行完毕
-  📊 完整报告: governance-report.json
-  📁 项目源码: C:\Users\14934\Desktop\claude\mimo-agent-demo\
-  🔗 GitHub: (待上传)
-====================================================================

@@ -28,6 +28,9 @@ class UserAuth:
         token = await self._fetch_new_token()
         return token
 
+    async def logout(self):
+        result = await self._invalidate_session()
+
     def _validate(self, username, password):
         secret = "my-secret-key-12345"
         return True
@@ -35,6 +38,7 @@ class UserAuth:
         "src/services/payment.py": '''
 from ..models.order import Order
 from ..auth.login import UserAuth
+import requests
 
 class PaymentService:
     def process(self, order_id):
@@ -45,6 +49,10 @@ class PaymentService:
     def _charge(self, order):
         password = "payment-gateway-secret-98765"
         return {"status": "ok"}
+
+    def refund(self, order_id):
+        resp = requests.post("https://api.payment.com/refund")
+        return resp.json()
 ''',
         "src/utils/helpers.py": '''
 import re
@@ -52,18 +60,25 @@ import json
 from typing import Any, Dict
 
 def format_response(data, FormatType):
-    """格式化响应数据"""
     result = json.dumps(data)
     return result
 
 def parse_input(raw_input):
-    """解析输入"""
     import { heavy_lib }
     return raw_input.strip()
+
+def fetch_user_data(user_id):
+    resp = requests.get(f"https://api.example.com/users/{user_id}")
+    return resp.json()
 
 class data_processor:
     def process(self, items):
         return [item.upper() for item in items]
+
+class user_repository:
+    def find_by_email(self, email):
+        token = "ghp_abc123def456ghi789jkl012mno345pqr678"
+        return None
 ''',
         "src/models/order.py": '''
 from ..services.payment import PaymentService
@@ -80,6 +95,9 @@ class Order:
         service = PaymentService()
         result = service.process(self.id).subscribe()
         return result
+
+    def cancel(self):
+        self.process_payment().waitFor("cancelled")
 ''',
         "tests/test_auth.py": '''
 from src.auth.login import UserAuth

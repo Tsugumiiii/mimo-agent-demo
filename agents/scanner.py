@@ -10,24 +10,24 @@ from typing import Optional
 
 RULES = {
     "deprecated-api": {
-        "pattern": r"\.subscribe\(|\.toPromise\(|React\.createClass",
+        "pattern": r"\.subscribe\(|\.toPromise\(|React\.createClass|\.waitFor\(|\.observe\(",
         "severity": "high",
         "message": "使用了已废弃的 API，请迁移到最新写法",
     },
     "naming-convention": {
-        "pattern": r"\b(?:let|const|var)\s+([a-z][a-z0-9]*_[A-Z])",
+        "pattern": r"\bclass\s+([a-z_][a-z0-9_]*)\s*[\(:]|\b(?:let|const|var)\s+([a-z][a-z0-9]*_[A-Z])|\bdef\s+([a-z][a-z0-9]*_[a-z])",
         "severity": "low",
-        "message": "变量命名不符合 camelCase 规范",
+        "message": "命名不符合规范（class 应大驼峰，函数/变量应小驼峰）",
     },
     "circular-dependency": {
-        "pattern": r"import\s+.*from\s+['\"]\.\.\/.*['\"]",
+        "pattern": r"from\s+\.\..+\s+import|import\s+.*from\s+['\"]\.\.\/.*['\"]",
         "severity": "high",
         "message": "存在潜在的循环依赖，建议重构导入路径",
     },
     "missing-error-handling": {
-        "pattern": r"await\s+\w+\(.*\)\s*$",
+        "pattern": r"await\s+\w+\(.*\)\s*$|\.get\(|\.post\(|\.put\(|\.delete\(\s*$",
         "severity": "medium",
-        "message": "异步调用缺少 try-catch 错误处理",
+        "message": "异步调用或 HTTP 请求缺少 try-catch 错误处理",
     },
     "hardcoded-secret": {
         "pattern": r"(?:api_key|secret|token|password)\s*[:=]\s*['\"][^'\"]{8,}['\"]",
@@ -35,7 +35,7 @@ RULES = {
         "message": "代码中存在硬编码的敏感信息",
     },
     "unused-import": {
-        "pattern": r"^import\s+\{[^}]*\}\s+from",
+        "pattern": r"^import\s+\{[^}]*\}",
         "severity": "low",
         "message": "可能存在未使用的导入，建议清理",
     },
